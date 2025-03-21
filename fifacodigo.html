@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesiones Cerebrales en el Fútbol</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-image: url('https://s1.1zoom.me/b5050/707/Footbal_Men_Ball_Uniform_Legs_521443_2560x1440.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            transition: margin-left 0.3s;
+            font-size: 18px; /* Tamaño de fuente más grande para mejor legibilidad */
+        }
+
+        /* Estilo para el botón de mostrar/ocultar */
+        .menu-toggle {
+            font-size: 28px; /* Aumentar tamaño del botón en móviles */
+            background-color: #333;
+            color: white;
+            border: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        .menu-toggle:hover {
+            background-color: #575757;
+        }
+
+        /* Estilo para el menú lateral */
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: rgba(51, 51, 51, 0.8);
+            color: white;
+            padding-top: 20px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.3s ease;
+            z-index: 10;
+        }
+
+        .sidebar .logo {
+            display: block;
+            width: 100px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+            font-size: 20px; /* Ajustar tamaño de letra para mejor legibilidad */
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        /* Estilo para el contenido principal */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        h1, h2, h3, h4, h5 {
+            color: #fff;
+            font-size: 26px; /* Ajustar tamaños de texto */
+        }
+
+        .section {
+            display: none;
+            margin-bottom: 30px;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section p {
+            font-size: 18px; /* Mejor legibilidad en texto */
+            color: #ddd;
+        }
+
+        .section img {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+            border-radius: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pdf-link {
+            color: #00bcd4;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            display: block;
+        }
+
+        .pdf-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Imagen de las lesiones cerebrales ajustada */
+        .lesiones-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                font-size: 32px;
+                padding: 15px;
+                left: 10px;
+                top: 10px;
+            }
+
+            .sidebar {
+                left: -200px;
+            }
+
+            .sidebar a {
+                font-size: 18px;
+            }
+
+            .section img {
+                max-width: 100%;
+            }
+
+            h1, h2, h3, h4, h5 {
+                font-size: 24px; /* Aumentar tamaño de fuente para títulos en móviles */
+            }
+        }
+
+        /* Estilos del formulario de contraseña */
+        .password-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .password-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            color: #333;
+        }
+
+        .password-box input {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .password-box button {
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .password-box button:hover {
+            background-color: #575757;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Formulario de contraseña -->
+    <div class="password-container" id="password-container">
+        <div class="password-box">
+            <h2>Introduce la contraseña</h2>
+            <input type="password" id="password-input" placeholder="Contraseña">
+            <button onclick="checkPassword()">Acceder</button>
+        </div>
+    </div>
+
+    <!-- Botón para mostrar/ocultar el menú lateral -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Menú lateral -->
+    <div class="sidebar" id="sidebar">
+        <!-- Logo -->
+        <img src="https://st3.depositphotos.com/15982498/18367/v/1600/depositphotos_183671350-stock-illustration-eagle-football-ball-logo.jpg" alt="Logo" class="logo">
+        <a href="javascript:void(0);" onclick="showSection('inicio')">Inicio</a>
+        <a href="javascript:void(0);" onclick="showSection('sistema-nervioso')">Sistema Nervioso</a>
+        <a href="javascript:void(0);" onclick="showSection('lesiones-cerebrales')">Tipos de Lesiones Cerebrales</a>
+        <a href="javascript:void(0);" onclick="showSection('prevencion')">Prevención de Lesiones</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <!-- Sección de Inicio -->
+        <div id="inicio" class="section">
+            <h1>Bienvenido a nuestro sitio web</h1>
+            <p>En este sitio web te queremos brindar información sobre el sistema nervioso, los tipos de lesiones que ocurren en el futbol al golpear el balón con la cabeza, y la previsión de lesiones.</p>
+            <img src="https://th.bing.com/th/id/OIP.ief-SsyTcf8r1CkeTA_V8gHaFN?rs=1&pid=ImgDetMain" alt="Imagen de inicio">
+        </div>
+
+        <!-- Sección Sistema Nervioso -->
+        <div id="sistema-nervioso" class="section">
+            <h2>Sistema Nervioso</h2>
+            <p>El sistema nervioso transmite señales entre el cerebro y el resto del cuerpo, incluidos los órganos internos. La unidad básica del sistema nervioso es la neurona.</p>
+            <h3>ENCÉFALO</h3>
+            <p><strong>Estructura:</strong> Cerebelo, cerebro, tallo o tronco cerebral.</p>
+            <h4>Cerebelo</h4>
+            <p><strong>Ubicación:</strong> Parte posterior del encéfalo.</p>
+            <p><strong>Función:</strong> Controla el equilibrio, aprendizaje y motricidad fina y gruesa.</p>
+            <h5>Motricidad fina</h5>
+            <p>Movimientos precisos con los dedos, manos, etc.</p>
+            <h5>Motricidad gruesa</h5>
+            <p>Movimientos con los brazos, piernas, pies o todo el cuerpo.</p>
+            <h4>Cerebro</h4>
+            <p><strong>Ubicación:</strong> Dentro del cráneo.</p>
+            <p><strong>Función:</strong> Controla funciones como el pensamiento, las emociones, la memoria, etc.</p>
+            <h4>Médula espinal</h4>
+            <p><strong>Ubicación:</strong> Desde la base del encéfalo hasta la columna vertebral.</p>
+            <p><strong>Función:</strong> Permite la comunicación entre el cerebro y el cuerpo.</p>
+            <h4>Lóbulos</h4>
+            <ul>
+                <li><strong>Lóbulo frontal:</strong> Control de movimientos voluntarios.</li>
+                <li><strong>Lóbulo parietal:</strong> Sensaciones de tacto, frío, calor, etc.</li>
+                <li><strong>Lóbulo occipital:</strong> Procesamiento visual.</li>
+                <li><strong>Lóbulo temporal:</strong> Lenguaje y audición.</li>
+                <li><strong>Lóbulo límbico:</strong> Modulación de emociones.</li>
+            </ul>
+            <img src="https://i.pinimg.com/originals/82/8d/5b/828d5bea30d290a311727750ae875c3f.jpg" alt="Imagen del sistema nervioso">
+        </div>
+
+        <!-- Sección Tipos de Lesiones Cerebrales -->
+        <div id="lesiones-cerebrales" class="section">
+            <h2>Tipos de Lesiones Cerebrales</h2>
+            <p>Los jugadores de futbol tienen un número más aumentado de golpes en la cabeza, lo que hace que tengan más riesgo de adquirir enfermedades a largo plazo como el alzhéimer, párkinson o esclerosis lateral amiotrófica (ELA).</p>
+            <p>Cuando se producen conmociones cerebrales, como golpes en la cabeza, mueren células y se acumulan proteínas nocivas, como beta amiloide.</p>
+            <p><strong>Cerebro:</strong> Los impactos repetitivos en esta zona pueden causar daños en la materia blanca, afectando la comunicación neuronal, lo que afecta las funciones cognitivas y motoras.</p>
+            <p><strong>Lóbulo parietal:</strong> Esta área procesa información sensorial y espacial, si recibe un impacto, puede alterar la percepción espacial y la coordinación.</p>
+            <p><strong>Lóbulo temporal:</strong> Este lóbulo se encarga de la memoria y la audición. Una contusión aquí puede afectar la memoria y la comprensión auditiva.</p>
+            <p><strong>Lóbulo central:</strong> Se encarga del control motor y la toma de decisiones. Un golpe en esta área puede afectar la concentración y la coordinación.</p>
+            <p><strong>Lóbulo occipital:</strong> Encargado de la visión, un impacto puede provocar problemas visuales.</p>
+            <p><strong>Cerebelo:</strong> Coordina la motricidad fina y gruesa. Una lesión puede provocar problemas en el equilibrio o coordinación.</p>
+            <p><strong>Médula espinal:</strong> Un traumatismo en esta área puede alterar la transmisión de señales motoras y sensoriales.</p>
+            <img src="https://th.bing.com/th/id/R.31a61974351a62b07520019d99ac59e4?rik=AcVo97Sn1LVPiA&pid=ImgRaw&r=0" alt="Imagen relacionada con lesiones cerebrales" class="lesiones-img" />
+        </div>
+
+        <!-- Sección Prevención de Lesiones -->
+        <div id="prevencion" class="section">
+            <h2>Prevención del Daño Cerebral</h2>
+            <p>Organizaciones deportivas investigan los trastornos cognitivos causados por los impactos en la cabeza del fútbol.</p>
+            <p>Este apartado busca difundir medidas de prevención del daño cerebral en los futbolistas.</p>
+            <a href="https://passport.world.rugby/media/logi4bad/concussion-recognition-tool-5-es.pdf" class="pdf-link" target="_blank">Descargar PDF sobre Prevención de Lesiones</a>
+            <img src="https://th.bing.com/th/id/OIP.z4h-Q-jmDFplu3DF-XiZMAHaE8?rs=1&pid=ImgDetMain" alt="Prevención de Lesiones">
+        </div>
+    </div>
+
+    <!-- Script para manejar el formulario de contraseña -->
+    <script>
+        function checkPassword() {
+            var password = document.getElementById('password-input').value;
+            if (password === 'futbol11') {
+                document.getElementById('password-container').style.display = 'none'; // Ocultar el formulario de contraseña
+            } else {
+                alert('Contraseña incorrecta. Intenta de nuevo.');
+            }
+        }
+
+        // Función para mostrar/ocultar el menú lateral
+        function toggleMenu() {
+            var sidebar = document.getElementById("sidebar");
+            var menuButton = document.querySelector(".menu-toggle");
+
+            if (sidebar.style.left === "-250px") {
+                sidebar.style.left = "0";
+                menuButton.innerHTML = "×";
+            } else {
+                sidebar.style.left = "-250px";
+                menuButton.innerHTML = "☰";
+            }
+        }
+
+        // Función para mostrar la sección seleccionada y ocultar las demás
+        function showSection(sectionId) {
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function(section) {
+                section.classList.remove('active');
+            });
+
+            var activeSection = document.getElementById(sectionId);
+            activeSection.classList.add('active');
+        }
+
+        // Mostrar la sección de inicio por defecto
+        showSection('inicio');
+    </script>
+
+</body>
+</html>
+
+
